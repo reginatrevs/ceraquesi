@@ -28,6 +28,11 @@
       <a href="talleres.html" aria-current="page">Talleres</a>
       <a href="empresas.html">Empresas y eventos</a>
       <a href="index.html#preguntas">Preguntas</a>
+      <div class="menu-redes" aria-label="Redes">
+        <a href="#" data-red="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-red="instagram" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" data-red="tiktok" target="_blank" rel="noopener">TikTok</a>
+      </div>
     </nav>
     <div class="nav-der"><a class="ig-top" id="ig-top" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg></a><a class="btn-cot" href="index.html#pedido" aria-label="Mi pedido"><span class="t">Mi pedido</span> <span class="n" id="contador">0</span></a><button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú"><span></span><span></span><span></span></button></div>
   </div>
@@ -57,7 +62,7 @@
       <div>
         <p class="kicker">Para empresas y eventos</p>
         <h2>Lleva el taller a tu <i>empresa o evento</i></h2>
-        <p class="nota-banda">Llevamos todo el material a tu oficina, casa o salón. Cada persona hace su propia vela y se la lleva. El costo depende del número de personas y de la vela que elijan; te mandamos la cotización por WhatsApp o Instagram.</p>
+        <p class="nota-banda">Llevamos todo el material a tu oficina, casa o salón. Cada persona hace su propia vela y se la lleva. El costo depende del número de personas y de la vela que elijan; te mandamos la cotización por WhatsApp.</p>
         <a class="cta" href="#cotizar" data-modo="Taller privado">Cotizar un taller</a>
       </div>
       <ul class="lista">
@@ -74,7 +79,7 @@
       <div class="formulario">
         <div class="lado-txt">
           <h2>Te <i>avisamos</i></h2>
-          <p>Pide que te avisemos cuando haya fechas, o cotiza un taller privado para tu grupo. Te contestamos por WhatsApp o Instagram.</p>
+          <p>Pide que te avisemos cuando haya fechas, o cotiza un taller privado para tu grupo. Te contestamos por WhatsApp.</p>
         </div>
         <div id="caja-form">
         <form id="form-taller" novalidate>
@@ -86,13 +91,6 @@
           </div>
           <div class="campo"><label for="taller">Taller</label><select id="taller" name="taller"></select></div>
           <div class="campo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" required autocomplete="name"></div>
-          <div class="campo"><span class="lbl">¿Por dónde te contactamos?</span>
-            <div class="opciones dos-op">
-              <label><input type="radio" name="via" value="WhatsApp" checked><span>WhatsApp</span></label>
-              <label><input type="radio" name="via" value="Instagram"><span>Instagram</span></label>
-            </div>
-          </div>
-          <div class="campo" data-campo-ig hidden><label for="ig">Tu usuario de Instagram</label><input id="ig" name="instagram" placeholder="@tuusuario" autocapitalize="off" autocomplete="off" spellcheck="false"></div>
           <div class="dos">
             <div class="campo"><label for="tel" data-lbl-tel>WhatsApp</label><input id="tel" name="telefono" type="tel" autocomplete="tel" placeholder="10 dígitos"></div>
             <div class="campo"><label for="email">Correo (opcional)</label><input id="email" name="email" type="email" autocomplete="email"><small class="ayuda">Te mandamos una copia con tu folio.</small></div>
@@ -127,6 +125,7 @@
       <a href="empresas.html">Empresas y eventos</a>
       <a href="#" id="wa-footer" target="_blank" rel="noopener">WhatsApp</a>
       <a href="#" id="ig-footer" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" data-red="tiktok" target="_blank" rel="noopener">TikTok</a>
     </nav>
     <p class="legal">© <span id="anio"></span> <span data-c="marca"></span>. Precios en pesos mexicanos, sujetos a confirmación.<br>Diseño y desarrollo web por <a href="https://trevs.ca" target="_blank" rel="noopener">Trevs.ca</a></p>
   </div>
