@@ -395,3 +395,27 @@ footer .logo-img{height:100px}
   .filtros::-webkit-scrollbar{display:none}
   .filtros button{flex:none}
 }
+
+/* Heroes internos alineados a la izquierda */
+.hero.sub.izq{text-align:left}
+.hero.sub.izq h1{font-size:clamp(52px,7.4vw,112px);max-width:14ch}
+.hero.sub.izq .lead{margin:28px 0 44px;max-width:48ch}
+@media (max-width:760px){.hero.sub.izq h1{font-size:50px}}
+
+/* Corona: en celular, la foto primero */
+@media (max-width:760px){.destacado img.img-corona{order:-1;justify-self:center;max-width:100%}}
+
+/* Contacto */
+.contacto{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px;align-items:stretch}
+.c-card{background:var(--lino);border-radius:var(--r-lg);padding:36px 30px;display:flex;flex-direction:column;align-items:flex-start}
+.c-card h2{font-size:clamp(40px,4.4vw,60px);word-break:break-word}
+.c-card h3{font-size:34px}
+.c-card p:not(.kicker){color:var(--suave);margin:14px 0 26px;max-width:36ch}
+.c-card .cta,.c-card .btn-linea{margin-top:auto}
+.c-ig{background:var(--nogal);color:var(--cera)}
+.c-ig .kicker{color:#E2C7BC}
+.c-ig h2{color:var(--cera)}
+.c-ig p:not(.kicker){color:#DCCFC2}
+.c-ig .cta{background:var(--cera);color:var(--nogal);border-color:var(--cera)}
+.c-ig .cta:hover{background:transparent;color:var(--cera)}
+@media (max-width:900px){.contacto{grid-template-columns:1fr}}
