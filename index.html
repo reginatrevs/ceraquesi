@@ -30,7 +30,7 @@
       <a href="index.html#preguntas">Preguntas</a>
       <a href="contacto.html">Contacto</a>
       <div class="menu-redes" aria-label="Redes">
-        <a href="#" data-red="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-red="correo">Correo</a>
         <a href="#" data-red="instagram" target="_blank" rel="noopener">Instagram</a>
         <a href="#" data-red="tiktok" target="_blank" rel="noopener">TikTok</a>
       </div>
@@ -86,7 +86,7 @@
           </ul>
           <div class="acciones">
             <a class="btn-sec" href="empresas.html">Ver ideas y cotizar</a>
-            <a href="#" id="wa-mayoreo" target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
+            <a href="#" id="wa-mayoreo" target="_blank" rel="noopener">o escríbenos por Instagram</a>
           </div>
         </div>
       </div>
@@ -143,7 +143,7 @@
       <a href="talleres.html">Talleres</a>
       <a href="empresas.html">Empresas y eventos</a>
       <a href="contacto.html">Contacto</a>
-      <a href="#" id="wa-footer" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#" data-red="correo">Correo</a>
       <a href="#" id="ig-footer" target="_blank" rel="noopener">Instagram</a>
       <a href="#" data-red="tiktok" target="_blank" rel="noopener">TikTok</a>
     </nav>
@@ -185,7 +185,7 @@ const PRODUCTOS = [
 ];
 
 const byId = Object.fromEntries(PRODUCTOS.map(p => [p.id, p]));
-$("#wa-mayoreo").href = waLink("Hola, me interesa un pedido grande para un evento o empresa.");
+$("#wa-mayoreo").href = dmLink();
 document.querySelectorAll("[data-precio]").forEach(el => el.textContent = mxn(byId[el.dataset.precio].precio));
 
 /* ----- Pedido (se guarda en el navegador) ----- */
@@ -299,6 +299,7 @@ function pintarPanel(){
             <div class="campo"><label for="tel" data-lbl-tel>WhatsApp</label><input id="tel" name="telefono" type="tel" autocomplete="tel" placeholder="10 dígitos"></div>
             <div class="campo"><label for="email">Correo (opcional)</label><input id="email" name="email" type="email" autocomplete="email"><small class="ayuda">Te mandamos una copia con tu folio.</small></div>
           </div>
+          <div class="campo"><label for="ig">Tu Instagram (opcional)</label><input id="ig" name="instagram" placeholder="@tuusuario" autocapitalize="off" autocomplete="off" spellcheck="false"></div>
       <div class="campo"><span class="lbl">Tipo de pedido</span>
         <div class="opciones">
           <label><input type="radio" name="tipo" value="Personal o regalo" checked><span>Para mí o regalo</span></label>
@@ -371,7 +372,7 @@ $("#panel-body").addEventListener("submit", async e => {
     await enviarAlScript(data);
   } catch(x) {
     btn.disabled = false; btn.textContent = "Enviar pedido";
-    err.innerHTML = `No se pudo enviar. Revisa tu conexión e inténtalo de nuevo, o <a href="${waLink(resumen)}" target="_blank" rel="noopener">mándalo por WhatsApp</a>.`;
+    err.innerHTML = `No se pudo enviar. Revisa tu conexión e inténtalo de nuevo, o <a href="${dmLink()}" target="_blank" rel="noopener">escríbenos por Instagram</a>.`;
     return;
   }
   pedido = {}; guardar(); pintarContador(); pintarAcciones();

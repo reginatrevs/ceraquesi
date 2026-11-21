@@ -7,7 +7,7 @@ const CONFIG = {
   logoImg: "img/logo.png",            // logo para fondo claro (déjalo vacío "" para usar el logo de texto)
   logoImgClaro: "img/logo-claro.png", // logo para el pie de página oscuro
   puntos: ["Metepec", "Calimaya"],    // puntos de entrega
-  whatsapp: "528100000000",           // 52 + 10 dígitos, sin espacios ni +
+  correo: "ceraquesimx@gmail.com",    // correo de contacto (se muestra en el sitio)
   instagram: "ceraquesi_mx",          // usuario de Instagram, sin @
   tiktok: "",                         // usuario de TikTok, sin @ (vacío = no se muestra)
   scriptUrl: ""                       // URL de Google Apps Script (ver apps-script.gs)
@@ -25,7 +25,8 @@ const TALLERES = [
 /* ===================================================================== */
 const $ = s => document.querySelector(s);
 const mxn = n => "$" + n.toLocaleString("es-MX") + " MXN";
-const waLink = txt => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(txt);
+/* Mensaje directo de Instagram (el número de WhatsApp de la marca no se muestra: tu mamá contacta a cada cliente) */
+const dmLink = () => "https://ig.me/m/" + CONFIG.instagram;
 const esc = t => String(t || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 function folioNuevo(pref) {
@@ -63,8 +64,9 @@ document.addEventListener("change", e => { if (e.target.name === "via") syncVia(
 function botonesResumen(resumen, folio) {
   return `<p style="margin-top:22px">¿Prefieres adelantarte?</p>
     <div class="botones-resumen">
-      <a class="wa" href="${waLink(resumen)}" target="_blank" rel="noopener">Enviar por WhatsApp</a>
-    </div>`;
+      <a class="wa" href="${dmLink()}" target="_blank" rel="noopener">Escríbenos por Instagram</a>
+    </div>
+    <p class="ayuda" style="margin-top:12px">Si nos escribes, mándanos tu folio ${folio}.</p>`;
 }
 
 /* Menú hamburguesa en celular */
@@ -95,9 +97,8 @@ function botonesResumen(resumen, folio) {
     const [a, b, c] = CONFIG.logo; el.innerHTML = `${a} <span class="de">${b}</span> ${c}`;
   });
   const anio = $("#anio"); if (anio) anio.textContent = new Date().getFullYear();
-  const wa = $("#wa-footer"); if (wa) wa.href = waLink("Hola, me interesan sus velas.");
   ["#ig-footer", "#ig-top"].forEach(sel => { const ig = $(sel); if (ig) { if (CONFIG.instagram) ig.href = igUrl(); else ig.remove(); } });
-  const redes = { whatsapp: CONFIG.whatsapp && waLink("Hola, me interesan sus velas."), instagram: CONFIG.instagram && igUrl(), tiktok: CONFIG.tiktok && "https://www.tiktok.com/@" + CONFIG.tiktok };
+  const redes = { correo: CONFIG.correo && "mailto:" + CONFIG.correo, instagram: CONFIG.instagram && igUrl(), tiktok: CONFIG.tiktok && "https://www.tiktok.com/@" + CONFIG.tiktok };
   document.querySelectorAll("[data-red]").forEach(a => { const url = redes[a.dataset.red]; if (url) a.href = url; else a.remove(); });
   const n = $("#contador");
   if (n) { try { const p = JSON.parse(localStorage.getItem("pedido") || "{}"); n.textContent = Object.values(p).reduce((a, b) => a + b, 0); } catch (e) {} }

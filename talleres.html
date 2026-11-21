@@ -30,7 +30,7 @@
       <a href="index.html#preguntas">Preguntas</a>
       <a href="contacto.html">Contacto</a>
       <div class="menu-redes" aria-label="Redes">
-        <a href="#" data-red="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" data-red="correo">Correo</a>
         <a href="#" data-red="instagram" target="_blank" rel="noopener">Instagram</a>
         <a href="#" data-red="tiktok" target="_blank" rel="noopener">TikTok</a>
       </div>
@@ -95,6 +95,7 @@
             <div class="campo"><label for="tel" data-lbl-tel>WhatsApp</label><input id="tel" name="telefono" type="tel" autocomplete="tel" placeholder="10 dígitos"></div>
             <div class="campo"><label for="email">Correo (opcional)</label><input id="email" name="email" type="email" autocomplete="email"><small class="ayuda">Te mandamos una copia con tu folio.</small></div>
           </div>
+          <div class="campo"><label for="ig">Tu Instagram (opcional)</label><input id="ig" name="instagram" placeholder="@tuusuario" autocapitalize="off" autocomplete="off" spellcheck="false"></div>
           <div id="solo-privado" hidden>
             <div class="campo"><label for="empresa">Empresa o evento</label><input id="empresa" name="empresa" autocomplete="organization"></div>
             <div class="dos">
@@ -124,7 +125,7 @@
       <a href="talleres.html">Talleres</a>
       <a href="empresas.html">Empresas y eventos</a>
       <a href="contacto.html">Contacto</a>
-      <a href="#" id="wa-footer" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#" data-red="correo">Correo</a>
       <a href="#" id="ig-footer" target="_blank" rel="noopener">Instagram</a>
       <a href="#" data-red="tiktok" target="_blank" rel="noopener">TikTok</a>
     </nav>
@@ -148,7 +149,7 @@ $("#lista-talleres").innerHTML = TALLERES.map(t => `
     </div>
     <div class="lado">
       ${t.fecha
-        ? `<a class="btn-linea" href="${waLink("Hola, quiero apartar lugar en el taller " + t.titulo + " (" + t.fecha + ").")}" target="_blank" rel="noopener">Apartar lugar</a>`
+        ? `<a class="btn-linea" href="${dmLink()}" target="_blank" rel="noopener">Apartar lugar</a>`
         : `<span class="estado">Sin fechas por ahora</span><br><a class="btn-linea" href="#cotizar" data-taller="${t.id}">Avísame</a>`}
     </div>
   </li>`).join("");
@@ -176,7 +177,7 @@ f.addEventListener("submit", async e => {
   const btn = f.querySelector(".enviar"); btn.disabled = true; btn.textContent = "Enviando…";
   try { await enviarAlScript(data); } catch (x) {
     btn.disabled = false; btn.textContent = "Enviar";
-    err.innerHTML = `No se pudo enviar. Revisa tu conexión e inténtalo de nuevo, o <a href="${waLink(resumen)}" target="_blank" rel="noopener">mándalo por WhatsApp</a>.`; return;
+    err.innerHTML = `No se pudo enviar. Revisa tu conexión e inténtalo de nuevo, o <a href="${dmLink()}" target="_blank" rel="noopener">escríbenos por Instagram</a>.`; return;
   }
   gracias($("#caja-form"), folio, privado ? "Recibimos tu solicitud" : "Te avisaremos",
     privado ? `Te escribimos ${porVia(data.via)} para cotizar tu taller.` : `Te escribimos ${porVia(data.via)} en cuanto abramos fechas.`, resumen);
