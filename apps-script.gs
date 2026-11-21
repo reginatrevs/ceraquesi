@@ -15,7 +15,7 @@
  * Si cambias este código después: Implementar → Administrar implementaciones → editar → Nueva versión.
  */
 
-const CORREO_AVISOS = "correo-de-tu-mama@gmail.com";
+const CORREO_AVISOS = "ceraquesimx@gmail.com";
 
 function doPost(e) {
   const d = JSON.parse(e.postData.contents);
@@ -24,7 +24,7 @@ function doPost(e) {
 }
 
 function hoja(nombre, encabezados) {
-  const libro = SpreadsheetApp.getActiveSpreadsheet();
+  const libro = SpreadsheetApp.openById("1sM-zDKOA0WUoQ_QWfnetCN43KgW485WZ-1NUUTj6cPI");
   let h = libro.getSheetByName(nombre);
   if (!h) h = libro.insertSheet(nombre);
   if (h.getLastRow() === 0) { h.appendRow(encabezados); h.setFrozenRows(1); }

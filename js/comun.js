@@ -10,7 +10,7 @@ const CONFIG = {
   correo: "ceraquesimx@gmail.com",    // correo de contacto (se muestra en el sitio)
   instagram: "ceraquesi_mx",          // usuario de Instagram, sin @
   tiktok: "",                         // usuario de TikTok, sin @ (vacío = no se muestra)
-  scriptUrl: ""                       // URL de Google Apps Script (ver apps-script.gs)
+  scriptUrl: "https://script.google.com/macros/s/AKfycbzjniykrmKgxHfyLaQI7IY4M-Z9s4KkfRU3yW6_dIxeeaI5J7xu5-Ov6z_xB2tPPFnu/exec" // Google Apps Script (Pedidos Cera que sí)
 };
 
 /* Talleres abiertos. Para abrir uno, pon la fecha (ej. "Sáb 6 dic, 11:00") y el precio.
