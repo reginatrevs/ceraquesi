@@ -122,9 +122,9 @@
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
       <div>
-        <details><summary>¿Cómo pago?</summary><p>No cobramos en el sitio. Cuando confirmamos tu pedido por WhatsApp te compartimos los datos para transferencia y cómo apartarlo.</p></details>
-        <details><summary>¿Cómo recibo mi pedido?</summary><p>Entregamos en puntos de encuentro en Metepec y Calimaya; te compartimos el lugar y la hora al confirmar. También enviamos a toda la República por paquetería: el costo depende del destino y del tamaño del pedido, y te lo confirmamos por WhatsApp antes de pagar.</p></details>
-        <details><summary>¿Cuánto tarda mi pedido?</summary><p>Como todo se hace a mano, depende de la cantidad. Para fechas navideñas te recomendamos pedir con anticipación.</p></details>
+        <details><summary>¿Cómo pago?</summary><p>No cobramos en el sitio. Para confirmar tu pedido pedimos el 50% de anticipo por transferencia o Mercado Pago, y el otro 50% al entregar (ahí también aceptamos efectivo). Te compartimos los datos por WhatsApp.</p></details>
+        <details><summary>¿Cómo recibo mi pedido?</summary><p>Tenemos puntos de entrega en Metepec, Calimaya y Toluca, y en CDMX en Condesa, Roma, Juárez, Polanco, Lomas de Chapultepec, Lomas de Virreyes y Santa Fe; te compartimos el lugar y la hora al confirmar. También enviamos a todo México por paquetería: el costo depende del destino y del tamaño del pedido, y te lo confirmamos por WhatsApp antes de pagar.</p></details>
+        <details><summary>¿Cuánto tarda mi pedido?</summary><p>Somos un equipo pequeño y todo se hace a mano. Para pedidos chicos necesitamos al menos 24 horas; los pedidos grandes toman unos días más y te confirmamos la fecha. Para fechas navideñas te recomendamos pedir con anticipación.</p></details>
         <details><summary>¿Puedo elegir colores?</summary><p>En pedidos chicos depende de lo que tengamos disponible, y te lo confirmamos al revisar tu pedido. En pedidos grandes te compartimos las opciones de colores que hay para que elijas.</p></details>
         <details><summary>¿Cómo cuido mi vela?</summary><p>Son de cera de soya. La primera vez, déjala encendida hasta que se derrita toda la superficie: así se consume pareja. Enciéndela sobre una superficie firme, lejos de corrientes de aire y de cosas que puedan quemarse, y nunca la dejes sola encendida. Las figuras también lucen como decoración sin encender.</p></details>
         <details><summary>¿Dan talleres?</summary><p>Sí. Abrimos talleres en grupo y también llevamos el taller a tu empresa o evento. <a href="talleres.html">Ver talleres</a></p></details>
@@ -157,7 +157,10 @@
 <aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panel-titulo" aria-hidden="true">
   <div class="panel-head">
     <h2 id="panel-titulo">Mi pedido</h2>
-    <button class="cerrar" id="cerrar" aria-label="Cerrar">×</button>
+    <div class="panel-acciones">
+      <button class="agrandar" id="agrandar" aria-pressed="false" aria-label="Ver en pantalla completa"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12 3h5v5M8 17H3v-5M17 3l-6 6M3 17l6-6"/></svg></button>
+      <button class="cerrar" id="cerrar" aria-label="Cerrar">×</button>
+    </div>
   </div>
   <div class="panel-body" id="panel-body"></div>
 </aside>
@@ -275,6 +278,12 @@ let ultimoFoco;
 function abrir(){ ultimoFoco = document.activeElement; pintarPanel(); document.body.classList.add("abierto"); $("#panel").setAttribute("aria-hidden","false"); $("#cerrar").focus(); $("#toast").classList.remove("on"); }
 function cerrar(){ document.body.classList.remove("abierto"); $("#panel").setAttribute("aria-hidden","true"); ultimoFoco && ultimoFoco.focus(); }
 $("#abrir").onclick = abrir; $("#cerrar").onclick = cerrar; $("#velo").onclick = cerrar;
+$("#agrandar").onclick = () => {
+  const g = $("#panel").classList.toggle("grande");
+  $("#agrandar").setAttribute("aria-pressed", g);
+  $("#agrandar").setAttribute("aria-label", g ? "Volver a la ventana chica" : "Ver en pantalla completa");
+};
+function manana(){ const d = new Date(); d.setDate(d.getDate() + 1); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
 document.addEventListener("keydown", e => { if(e.key==="Escape" && document.body.classList.contains("abierto")) cerrar(); });
 
 function pintarPanel(){
@@ -296,29 +305,76 @@ function pintarPanel(){
     <form id="form" novalidate>
       <h3>Tus datos</h3>
       <div class="campo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" required autocomplete="name"></div>
-          <div class="dos">
-            <div class="campo"><label for="tel" data-lbl-tel>WhatsApp</label><input id="tel" name="telefono" type="tel" autocomplete="tel" placeholder="10 dígitos"></div>
-            <div class="campo"><label for="email">Correo (opcional)</label><input id="email" name="email" type="email" autocomplete="email"><small class="ayuda">Te mandamos una copia con tu folio.</small></div>
-          </div>
-          <div class="campo"><label for="ig">Tu Instagram (opcional)</label><input id="ig" name="instagram" placeholder="@tuusuario" autocapitalize="off" autocomplete="off" spellcheck="false"></div>
-      <div class="campo"><span class="lbl">Tipo de pedido</span>
+      <div class="dos">
+        <div class="campo"><label for="tel">WhatsApp</label><input id="tel" name="telefono" type="tel" autocomplete="tel" placeholder="10 dígitos" required></div>
+        <div class="campo"><label for="email">Correo</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      </div>
+      <p class="ayuda ayuda-campo">A tu correo te llega una copia del pedido con tu folio.</p>
+      <div class="campo"><label for="ig">Tu Instagram (opcional)</label><input id="ig" name="instagram" placeholder="@tuusuario" autocapitalize="off" autocomplete="off" spellcheck="false"></div>
+
+      <h3>Tipo de pedido</h3>
+      <div class="campo">
         <div class="opciones">
           <label><input type="radio" name="tipo" value="Personal o regalo" checked><span>Para mí o regalo</span></label>
           <label><input type="radio" name="tipo" value="Para revender"><span>Para revender</span></label>
           <label><input type="radio" name="tipo" value="Empresa o evento"><span>Empresa o evento</span></label>
         </div>
       </div>
-      <div class="campo" id="campo-empresa" hidden><label for="empresa">Nombre de la empresa o evento</label><input id="empresa" name="empresa" autocomplete="organization"></div>
-      <div class="campo"><span class="lbl">Entrega</span>
+      <div class="campo" id="campo-empresa" hidden><label for="empresa">Nombre de tu marca, empresa o evento (opcional)</label><input id="empresa" name="empresa" autocomplete="organization"></div>
+      <details class="perso">
+        <summary>¿Quieres personalizarlo? <small>(opcional)</small></summary>
         <div class="opciones">
-          <label><input type="radio" name="entrega" value="Punto de entrega en Metepec" checked><span>Punto de entrega en Metepec<small>Te compartimos el lugar y la hora al confirmar.</small></span></label>
-          <label><input type="radio" name="entrega" value="Punto de entrega en Calimaya"><span>Punto de entrega en Calimaya<small>Te compartimos el lugar y la hora al confirmar.</small></span></label>
-          <label><input type="radio" name="entrega" value="Envío a otra ciudad"><span>Envío a otra ciudad<small>Cotizamos la paquetería por ti.</small></span></label>
+          <label><input type="checkbox" name="perso" value="Sticker o etiqueta con logo"><span>Sticker o etiqueta con tu logo</span></label>
+          <label><input type="checkbox" name="perso" value="Tarjeta con mensaje"><span>Tarjeta con mensaje</span></label>
+          <label><input type="checkbox" name="perso" value="Empaque especial"><span>Empaque especial para regalo</span></label>
+          <label><input type="checkbox" name="perso" value="Otra idea"><span>Otra idea</span></label>
         </div>
+        <div class="campo"><label for="idea">Cuéntanos tu idea</label><textarea id="idea" name="idea" placeholder="Por ejemplo: 30 velas con el logo de mi empresa en una etiqueta."></textarea></div>
+        <p class="aviso-chico">La personalización tiene un costo extra según lo que pidas. Te compartimos el precio para que lo confirmes antes de empezar.</p>
+      </details>
+
+      <h3>Entrega o envío</h3>
+      <div class="campo">
+        <p class="grupo">Estado de México</p>
+        <div class="opciones">
+          <label><input type="radio" name="entrega" value="Punto de entrega en Metepec" checked><span>Punto de entrega en Metepec</span></label>
+          <label><input type="radio" name="entrega" value="Punto de entrega en Calimaya"><span>Punto de entrega en Calimaya</span></label>
+          <label><input type="radio" name="entrega" value="Punto de entrega en Toluca"><span>Punto de entrega en Toluca</span></label>
+        </div>
+        <p class="grupo">Ciudad de México</p>
+        <div class="opciones">
+          <label><input type="radio" name="entrega" value="Punto de entrega en CDMX"><span>Punto de entrega en CDMX<small>Condesa, Roma, Juárez, Polanco, Lomas o Santa Fe.</small></span></label>
+        </div>
+        <div class="campo sub" id="campo-cdmx" hidden><label for="colonia-cdmx">¿En qué colonia?</label><select id="colonia-cdmx" name="coloniaCdmx"><option value="">Elige una colonia</option><option>Condesa</option><option>Roma</option><option>Juárez</option><option>Polanco</option><option>Lomas de Chapultepec</option><option>Lomas de Virreyes</option><option>Santa Fe</option></select></div>
+        <p class="grupo">Otra ciudad</p>
+        <div class="opciones">
+          <label><input type="radio" name="entrega" value="Envío por paquetería"><span>Envío por paquetería<small>Cotizamos la paquetería por ti.</small></span></label>
+        </div>
+        <p class="ayuda">En puntos de entrega, te compartimos el lugar y la hora al confirmar.</p>
       </div>
-      <div class="campo" id="campo-dir" hidden><label for="ciudad" id="lbl-dir">Ciudad y estado</label><input id="ciudad" name="ciudad" autocomplete="address-level2"></div>
-      <div class="campo"><label for="fecha">¿Para cuándo lo necesitas?</label><input id="fecha" name="fecha" type="date"></div>
-      <div class="campo"><label for="notas">Notas</label><textarea id="notas" name="notas" placeholder="Colores, mensaje de regalo, detalles del evento…"></textarea></div>
+      <fieldset class="direccion" id="campo-dir" hidden>
+        <legend>Dirección de envío</legend>
+        <div class="campo"><label for="calle">Calle y número</label><input id="calle" name="calle" autocomplete="address-line1"></div>
+        <div class="dos">
+          <div class="campo"><label for="interior">Núm. interior (opcional)</label><input id="interior" name="interior" autocomplete="address-line2"></div>
+          <div class="campo"><label for="cp">Código postal</label><input id="cp" name="cp" inputmode="numeric" maxlength="5" autocomplete="postal-code"></div>
+        </div>
+        <div class="campo"><label for="colonia">Colonia</label><input id="colonia" name="colonia" autocomplete="address-level3"></div>
+        <div class="dos">
+          <div class="campo"><label for="ciudad">Ciudad o municipio</label><input id="ciudad" name="ciudad" autocomplete="address-level2"></div>
+          <div class="campo"><label for="estado">Estado</label><input id="estado" name="estado" autocomplete="address-level1"></div>
+        </div>
+        <div class="campo"><label for="referencias">Referencias (opcional)</label><input id="referencias" name="referencias" placeholder="Entre calles, color de la casa…"></div>
+      </fieldset>
+
+      <div class="campo"><label for="fecha">¿Para cuándo lo necesitas?</label><input id="fecha" name="fecha" type="date" min="${manana()}">
+        <small class="ayuda">Pedidos chicos: mínimo 24 horas. Pedidos grandes necesitan unos días más y te confirmamos la fecha. Somos un equipo pequeño y todo se hace a mano.</small></div>
+      <div class="campo"><label for="notas">Notas (opcional)</label><textarea id="notas" name="notas" placeholder="¿Alguna pregunta o algo que debamos saber?"></textarea></div>
+
+      <div class="pago">
+        <p class="grupo">Cómo se paga</p>
+        <p>Para confirmar tu pedido pedimos el <b>50% de anticipo</b> y el otro 50% al entregar. Aceptamos transferencia y Mercado Pago; efectivo solo en el pago al entregar. No cobramos nada en el sitio.</p>
+      </div>
       <button class="enviar" type="submit">Enviar pedido</button>
       <p class="error" id="error" role="alert"></p>
     </form>`;
@@ -340,17 +396,29 @@ $("#panel-body").addEventListener("change", e => {
 });
 function actualizarCampos(){
   const f = $("#form"); if (!f) return;
-  $("#campo-empresa").hidden = f.tipo.value !== "Empresa o evento";
+  $("#campo-empresa").hidden = f.tipo.value === "Personal o regalo";
   const ent = f.entrega.value;
-  $("#campo-dir").hidden = ent !== "Envío a otra ciudad";
-  syncVia(f);
+  $("#campo-cdmx").hidden = ent !== "Punto de entrega en CDMX";
+  $("#campo-dir").hidden = ent !== "Envío por paquetería";
 }
 $("#panel-body").addEventListener("change", e => { if (e.target.name === "tipo" || e.target.name === "entrega") actualizarCampos(); });
 function refrescarItems(){
   // vuelve a pintar sin perder lo escrito en el formulario
-  const form = $("#form"); const datos = form ? new FormData(form) : null;
+  const form = $("#form"); let st = null;
+  if (form) {
+    st = { vals:{}, marcados:new Set(), abierto: !!(form.querySelector("details.perso") || {}).open };
+    [...form.elements].forEach(el => { if (!el.name) return;
+      if (el.type === "radio" || el.type === "checkbox") { if (el.checked) st.marcados.add(el.name + "=" + el.value); }
+      else st.vals[el.name] = el.value; });
+  }
   pintarPanel();
-  if (datos && $("#form")) for (const [k,v] of datos) { const el = $("#form").elements[k]; if (el && el.type!=="radio" && !el.length) el.value = v; else if (el && el.length) [...el].forEach(r => r.checked = r.value===v); }
+  const nf = $("#form");
+  if (st && nf) {
+    [...nf.elements].forEach(el => { if (!el.name) return;
+      if (el.type === "radio" || el.type === "checkbox") el.checked = st.marcados.has(el.name + "=" + el.value);
+      else if (el.name in st.vals) el.value = st.vals[el.name]; });
+    const d = nf.querySelector("details.perso"); if (d) d.open = st.abierto;
+  }
   actualizarCampos();
 }
 
@@ -359,14 +427,31 @@ $("#panel-body").addEventListener("submit", async e => {
   const f = e.target, err = $("#error"); err.textContent = "";
   const c = validarContacto(f, err); if (!c) return;
   const nombre = c.nombre;
+  const fallo = (msg, el) => { err.textContent = msg; if (el) el.focus(); return true; };
+  if (!c.email && fallo("Escribe tu correo: ahí te llega la copia de tu pedido.", f.email)) return;
+  const ent = f.entrega.value;
+  if (ent === "Punto de entrega en CDMX" && !f.coloniaCdmx.value && fallo("Elige la colonia de CDMX donde quieres recibirlo.", f.coloniaCdmx)) return;
+  if (ent === "Envío por paquetería") {
+    for (const [campo, msg] of [["calle","Escribe la calle y el número."],["cp","Escribe el código postal (5 dígitos)."],["colonia","Escribe la colonia."],["ciudad","Escribe la ciudad o municipio."],["estado","Escribe el estado."]]) {
+      const v = f[campo].value.trim();
+      if ((!v || (campo === "cp" && !/^\d{5}$/.test(v))) && fallo(msg, f[campo])) return;
+    }
+  }
+  if (f.fecha.value && f.fecha.value < manana() && fallo("Elige una fecha a partir de mañana: necesitamos al menos 24 horas.", f.fecha)) return;
+  const perso = [...f.querySelectorAll('input[name="perso"]:checked')].map(x => x.value);
+  const personalizacion = [perso.join(", "), f.idea.value.trim()].filter(Boolean).join(" · Idea: ");
+  const entrega = ent === "Punto de entrega en CDMX" ? ent + " · " + f.coloniaCdmx.value : ent;
+  const direccion = ent === "Envío por paquetería"
+    ? [f.calle.value.trim() + (f.interior.value.trim() ? " int. " + f.interior.value.trim() : ""), "Col. " + f.colonia.value.trim(), "C.P. " + f.cp.value.trim(), f.ciudad.value.trim() + ", " + f.estado.value.trim(), f.referencias.value.trim() ? "Ref.: " + f.referencias.value.trim() : ""].filter(Boolean).join(", ")
+    : "";
 
   const folio = "P-" + new Date().toISOString().slice(5,10).replace("-","") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
   const items = Object.entries(pedido).map(([id,q]) => ({nombre:`${byId[id].nombre} (${byId[id].desc})${byId[id].precio ? "" : " — precio por confirmar"}`, cantidad:q, precio:byId[id].precio, total:byId[id].precio*q}));
-  const data = { folio, ...c, tipo:f.tipo.value, empresa:f.empresa.value.trim(), entrega:f.entrega.value,
-    ciudad:f.entrega.value === "Envío a otra ciudad" ? f.ciudad.value.trim() : "", fecha:f.fecha.value, notas:f.notas.value.trim(), items, subtotal:subtotal(), marca:CONFIG.marca };
+  const data = { folio, ...c, tipo:f.tipo.value, empresa:f.tipo.value === "Personal o regalo" ? "" : f.empresa.value.trim(), personalizacion, entrega,
+    direccion, ciudad:direccion, fecha:f.fecha.value, notas:f.notas.value.trim(), items, subtotal:subtotal(), marca:CONFIG.marca };
 
   const resumen = `Hola, soy ${nombre}${data.empresa ? " ("+data.empresa+")" : ""}. Pedido ${folio} · ${data.tipo}:\n` + items.map(i => `• ${i.cantidad} × ${i.nombre}`).join("\n") +
-    `\nSubtotal estimado: ${mxn(data.subtotal)}\nEntrega: ${data.entrega}${data.ciudad ? " ("+data.ciudad+")" : ""}${data.fecha ? "\nPara: "+data.fecha : ""}${data.notas ? "\nNotas: "+data.notas : ""}`;
+    `\nSubtotal estimado: ${mxn(data.subtotal)}${data.personalizacion ? "\nPersonalización: "+data.personalizacion : ""}\nEntrega: ${data.entrega}${data.direccion ? " ("+data.direccion+")" : ""}${data.fecha ? "\nPara: "+data.fecha : ""}${data.notas ? "\nNotas: "+data.notas : ""}`;
 
   const btn = f.querySelector(".enviar"); btn.disabled = true; btn.textContent = "Enviando…";
   try {
@@ -381,8 +466,8 @@ $("#panel-body").addEventListener("submit", async e => {
     <div class="listo">
             <h3>Recibimos tu pedido</h3>
       <span class="folio">Folio ${folio}</span>
-      <p>Te escribiremos ${porVia(data.via)} en menos de 24 horas para confirmar disponibilidad, entrega y forma de pago.</p>
-      ${data.email ? `<p>También te enviamos una copia a ${esc(data.email)}.</p>` : `<p>Guarda tu número de folio.</p>`}
+      <p>Te escribiremos por WhatsApp en menos de 24 horas para confirmar disponibilidad, entrega y el anticipo del 50%.</p>
+      <p>Te enviamos una copia a ${esc(data.email)}. Si no la ves, revisa tu carpeta de spam.</p>
       ${botonesResumen(resumen, folio)}
     </div>`;
 });
