@@ -310,6 +310,7 @@ footer .logo-img{height:100px}
 @media (max-width:760px){.hero.izq .wrap{padding-top:40px;padding-bottom:72px}.hero-logo{width:min(86vw,420px);margin-bottom:28px}}
 .legal a{color:#CDBBAA;text-underline-offset:3px}
 .legal a:hover{color:var(--cera)}
+.legal .credito{display:block;margin-top:10px;font-size:14px;color:#A89C8E}
 .destacado img.img-corona{aspect-ratio:auto;height:auto;max-width:620px;border-radius:0;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(31,27,24,.35))}
 
 /* ===== Menú hamburguesa (celular) ===== */
