@@ -122,8 +122,8 @@
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
       <div>
-        <details><summary>¿Cómo pago?</summary><p>No cobramos en el sitio. Para confirmar tu pedido pedimos el 50% de anticipo por transferencia o Mercado Pago, y el otro 50% al entregar (ahí también aceptamos efectivo). Te compartimos los datos por WhatsApp.</p></details>
-        <details><summary>¿Cómo recibo mi pedido?</summary><p>Tenemos puntos de entrega en Metepec, Calimaya y Toluca, y en CDMX en Condesa, Roma, Juárez, Polanco, Lomas de Chapultepec, Lomas de Virreyes y Santa Fe; te compartimos el lugar y la hora al confirmar. También enviamos a todo México por paquetería: el costo depende del destino y del tamaño del pedido, y te lo confirmamos por WhatsApp antes de pagar.</p></details>
+        <details><summary>¿Cómo pago?</summary><p>No cobramos en el sitio. Para confirmar tu pedido pedimos el 50% de anticipo y el otro 50% al entregar, por transferencia o Mercado Pago. Te compartimos los datos por WhatsApp.</p></details>
+        <details><summary>¿Cómo recibo mi pedido?</summary><p>Tenemos puntos de entrega en Metepec, Calimaya y Toluca, y en CDMX en Condesa, Roma, Juárez, Polanco, Lomas de Chapultepec, Lomas de Virreyes y Santa Fe; te compartimos el lugar y la hora al confirmar. También puedes pedir un Uber que recoja tu pedido en nuestra casa-taller (el envío lo pagas tú), o te enviamos a todo México por paquetería: el costo depende del destino y del tamaño del pedido, y te lo confirmamos por WhatsApp antes de pagar.</p></details>
         <details><summary>¿Cuánto tarda mi pedido?</summary><p>Somos un equipo pequeño y todo se hace a mano. Para pedidos chicos necesitamos al menos 24 horas; los pedidos grandes toman unos días más y te confirmamos la fecha. Para fechas navideñas te recomendamos pedir con anticipación.</p></details>
         <details><summary>¿Puedo elegir colores?</summary><p>En pedidos chicos depende de lo que tengamos disponible, y te lo confirmamos al revisar tu pedido. En pedidos grandes te compartimos las opciones de colores que hay para que elijas.</p></details>
         <details><summary>¿Cómo cuido mi vela?</summary><p>Son de cera de soya. La primera vez, déjala encendida hasta que se derrita toda la superficie: así se consume pareja. Enciéndela sobre una superficie firme, lejos de corrientes de aire y de cosas que puedan quemarse, y nunca la dejes sola encendida. Las figuras también lucen como decoración sin encender.</p></details>
@@ -346,9 +346,10 @@ function pintarPanel(){
           <label><input type="radio" name="entrega" value="Punto de entrega en CDMX"><span>Punto de entrega en CDMX<small>Condesa, Roma, Juárez, Polanco, Lomas o Santa Fe.</small></span></label>
         </div>
         <div class="campo sub" id="campo-cdmx" hidden><label for="colonia-cdmx">¿En qué colonia?</label><select id="colonia-cdmx" name="coloniaCdmx"><option value="">Elige una colonia</option><option>Condesa</option><option>Roma</option><option>Juárez</option><option>Polanco</option><option>Lomas de Chapultepec</option><option>Lomas de Virreyes</option><option>Santa Fe</option></select></div>
-        <p class="grupo">Otra ciudad</p>
+        <p class="grupo">Envío</p>
         <div class="opciones">
-          <label><input type="radio" name="entrega" value="Envío por paquetería"><span>Envío por paquetería<small>Cotizamos la paquetería por ti.</small></span></label>
+          <label><input type="radio" name="entrega" value="Envío por Uber"><span>Envío por Uber<small>Tú lo pides y lo pagas. Sale de nuestra casa-taller; te compartimos la dirección de recogida al confirmar.</small></span></label>
+          <label><input type="radio" name="entrega" value="Envío por paquetería"><span>Envío por paquetería a otra ciudad<small>Cotizamos la paquetería por ti.</small></span></label>
         </div>
         <p class="ayuda">En puntos de entrega, te compartimos el lugar y la hora al confirmar.</p>
       </div>
@@ -373,7 +374,7 @@ function pintarPanel(){
 
       <div class="pago">
         <p class="grupo">Cómo se paga</p>
-        <p>Para confirmar tu pedido pedimos el <b>50% de anticipo</b> y el otro 50% al entregar. Aceptamos transferencia y Mercado Pago; efectivo solo en el pago al entregar. No cobramos nada en el sitio.</p>
+        <p>Para confirmar tu pedido pedimos el <b>50% de anticipo</b> y el otro 50% al entregar. Aceptamos transferencia y Mercado Pago. No cobramos nada en el sitio.</p>
       </div>
       <button class="enviar" type="submit">Enviar pedido</button>
       <p class="error" id="error" role="alert"></p>
