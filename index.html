@@ -468,7 +468,8 @@ $("#panel-body").addEventListener("submit", async e => {
             <h3>Recibimos tu pedido</h3>
       <span class="folio">Folio ${folio}</span>
       <p>Te escribiremos por WhatsApp en menos de 24 horas para confirmar disponibilidad, entrega y el anticipo del 50%.</p>
-      <p>Te enviamos una copia a ${esc(data.email)}. Si no la ves, revisa tu carpeta de spam.</p>
+      <p>Te enviamos una copia a ${esc(data.email)}.</p>
+      <p class="aviso-spam">Si no la ves, revisa tu carpeta de spam.</p>
       ${botonesResumen(resumen, folio)}
     </div>`;
 });
