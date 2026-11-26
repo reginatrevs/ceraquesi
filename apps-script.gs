@@ -64,7 +64,7 @@ function pedido(d) {
         resumen(d) +
         `<div style="background:#E0D8C8;border-radius:8px;padding:14px 16px;margin:20px 0 0">
            <p style="margin:0 0 6px;font-family:'Courier New',monospace;font-size:12px;letter-spacing:1px;color:#5E5247">CÓMO SE PAGA</p>
-           <p style="margin:0">Para confirmar tu pedido pedimos el 50% de anticipo por transferencia o Mercado Pago. El otro 50% es contraentrega y también puede ser en efectivo. Los precios están sujetos a confirmación y no incluyen envío.</p>
+           <p style="margin:0">Para confirmar tu pedido pedimos el 50% de anticipo por transferencia o Mercado Pago. El otro 50% es contra entrega y también puede ser en efectivo. Los precios están sujetos a confirmación y no incluyen envío.</p>
          </div>
          <p style="margin:20px 0 0">¿Dudas? Responde a este correo o escríbenos en Instagram: <a href="https://instagram.com/${INSTAGRAM}" style="color:#6E2B1E">@${INSTAGRAM}</a>.</p>`)
     });
