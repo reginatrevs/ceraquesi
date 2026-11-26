@@ -6,11 +6,11 @@ const CONFIG = {
   logo: ["Cera", "que", "sí"],       // logo provisional en texto: palabra, palabra en itálica, palabra
   logoImg: "img/logo.png",            // logo para fondo claro (déjalo vacío "" para usar el logo de texto)
   logoImgClaro: "img/logo-claro.png", // logo para el pie de página oscuro
-  puntos: ["Metepec", "Calimaya"],    // puntos de entrega
+  puntos: ["Metepec", "Calimaya", "Toluca", "CDMX"], // puntos de entrega (las colonias de CDMX están en index.html)
   correo: "ceraquesimx@gmail.com",    // correo de contacto (se muestra en el sitio)
   instagram: "ceraquesi_mx",          // usuario de Instagram, sin @
   tiktok: "",                         // usuario de TikTok, sin @ (vacío = no se muestra)
-  scriptUrl: "https://script.google.com/macros/s/AKfycbzjniykrmKgxHfyLaQI7IY4M-Z9s4KkfRU3yW6_dIxeeaI5J7xu5-Ov6z_xB2tPPFnu/exec" // Google Apps Script (Pedidos Cera que sí)
+  scriptUrl: "https://script.google.com/macros/s/AKfycbzxGV79Wub-O_1iUVJa59o1ntMMzXPUDeoQ0zk_K7if5xXVDgKQpU79o0fzxbfMmoxM/exec" // Google Apps Script (Pedidos Cera que sí)
 };
 
 /* Talleres abiertos. Para abrir uno, pon la fecha (ej. "Sáb 6 dic, 11:00") y el precio.
@@ -75,7 +75,7 @@ function botonesResumen(resumen, folio) {
   if (!btn || !nav) return;
   const cerrar = () => { nav.classList.remove("menu-abierto"); document.documentElement.classList.remove("sin-scroll"); btn.setAttribute("aria-expanded", "false"); btn.setAttribute("aria-label", "Abrir menú"); };
   btn.addEventListener("click", () => {
-    nav.style.setProperty("--alto-nav", nav.getBoundingClientRect().bottom + "px");
+    nav.style.setProperty("--alto-nav", Math.max(0, nav.getBoundingClientRect().bottom) + "px");
     const abierto = nav.classList.toggle("menu-abierto");
     document.documentElement.classList.toggle("sin-scroll", abierto);
     btn.setAttribute("aria-expanded", abierto); btn.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
