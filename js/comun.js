@@ -59,6 +59,10 @@ function syncVia(f) {
   const lbl = f.querySelector("[data-lbl-tel]"); if (lbl) lbl.textContent = ig ? "Celular (opcional)" : "WhatsApp";
 }
 document.addEventListener("change", e => { if (e.target.name === "via") syncVia(e.target.form); });
+// Instagram: la @ se pone sola
+document.addEventListener("focusin", e => { const t = e.target; if (t.name === "instagram" && !t.value) t.value = "@"; });
+document.addEventListener("input", e => { const t = e.target; if (t.name !== "instagram") return; const v = t.value.replace(/[@\s]/g, ""); t.value = "@" + v; });
+document.addEventListener("focusout", e => { const t = e.target; if (t.name === "instagram" && t.value === "@") t.value = ""; });
 
 /* Botones después de enviar: mandar el resumen por WhatsApp o escribir por Instagram */
 function botonesResumen(resumen, folio) {

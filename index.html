@@ -121,9 +121,10 @@
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
       <div>
+        <details><summary>¿Cómo hago mi pedido?</summary><p>Aquí en el sitio: elige tus velas, llena tus datos y envía tu pedido. Te llega una copia a tu correo y te escribimos por WhatsApp para confirmarlo. Si tienes una duda que no está en estas preguntas, escríbenos por mensaje en Instagram.</p></details>
         <details><summary>¿Cómo pago?</summary><p>No cobramos en el sitio. Para confirmar tu pedido pedimos el 50% de anticipo por transferencia o Mercado Pago. El otro 50% lo pagas al entregar, también en efectivo si prefieres. Te compartimos los datos por WhatsApp.</p></details>
-        <details><summary>¿Cómo recibo mi pedido?</summary><p>Tenemos puntos de entrega en Metepec, Calimaya y Toluca, y en CDMX en Condesa, Roma, Juárez, Polanco, Lomas de Chapultepec, Lomas de Virreyes y Santa Fe; te compartimos el lugar y la hora al confirmar. También puedes solicitar un Uber que recoja tu pedido en nuestra casa-taller (el envío corre por tu cuenta), o te enviamos a todo México por paquetería: el costo depende del destino y del tamaño del pedido, y te lo confirmamos por WhatsApp antes de pagar.</p></details>
-        <details><summary>¿Cuánto tarda mi pedido?</summary><p>Somos un equipo pequeño y todo se hace a mano. Para pedidos chicos necesitamos al menos 24 horas; los pedidos grandes toman unos días más y te confirmamos la fecha. Para fechas navideñas te recomendamos pedir con anticipación.</p></details>
+        <details><summary>¿Cómo recibo mi pedido?</summary><p>Tenemos puntos de entrega en Metepec, Calimaya y Toluca, y en CDMX en Condesa, Roma, Juárez, Polanco, Lomas de Chapultepec, Lomas de Virreyes y Santa Fe; te compartimos el lugar y la hora al confirmar. También puedes solicitar un Uber que recoja tu pedido en nuestra casa-taller en Calimaya (el envío corre por tu cuenta), o te enviamos a todo México por paquetería: el costo depende del destino y del tamaño del pedido, y te lo confirmamos por WhatsApp antes de pagar.</p></details>
+        <details><summary>¿Cuánto tarda mi pedido?</summary><p>Somos un equipo pequeño y todo se hace a mano. Revisamos tu pedido en menos de 24 horas y empezamos a hacerlo al recibir el anticipo del 50%; con la cotización final te confirmamos la fecha de entrega. Pide con al menos 48 horas y, si tienes una fecha en mente, ponla en tu pedido: te decimos qué es posible. Los pedidos grandes toman unos días más, y para fechas navideñas te recomendamos pedir con anticipación.</p></details>
         <details><summary>¿Puedo elegir colores?</summary><p>En pedidos chicos depende de lo que tengamos disponible, y te lo confirmamos al revisar tu pedido. En pedidos grandes te compartimos las opciones de colores que hay para que elijas.</p></details>
         <details><summary>¿Cómo cuido mi vela?</summary><p>Son de cera de soya. La primera vez, déjala encendida hasta que se derrita toda la superficie: así se consume pareja. Enciéndela sobre una superficie firme, lejos de corrientes de aire y de cosas que puedan quemarse, y nunca la dejes sola encendida. Las figuras también lucen como decoración sin encender.</p></details>
         <details><summary>¿Dan talleres?</summary><p>Sí. Abrimos talleres en grupo y también llevamos el taller a tu empresa o evento. <a href="talleres.html">Ver talleres</a></p></details>
@@ -282,7 +283,7 @@ $("#agrandar").onclick = () => {
   $("#agrandar").setAttribute("aria-pressed", g);
   $("#agrandar").setAttribute("aria-label", g ? "Volver a la ventana chica" : "Ver en pantalla completa");
 };
-function manana(){ const d = new Date(); d.setDate(d.getDate() + 1); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
+function minFecha(){ const d = new Date(); d.setDate(d.getDate() + 2); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
 document.addEventListener("keydown", e => { if(e.key==="Escape" && document.body.classList.contains("abierto")) cerrar(); });
 
 function pintarPanel(){
@@ -333,6 +334,7 @@ function pintarPanel(){
       </details>
 
       <h3>Entrega o envío</h3>
+      <p class="ayuda">En puntos de entrega, te compartimos el lugar y la hora al confirmar.</p>
       <div class="campo">
         <p class="grupo">Estado de México</p>
         <div class="opciones">
@@ -347,10 +349,9 @@ function pintarPanel(){
         <div class="campo sub" id="campo-cdmx" hidden><label for="colonia-cdmx">¿En qué colonia?</label><select id="colonia-cdmx" name="coloniaCdmx"><option value="">Elige una colonia</option><option>Condesa</option><option>Roma</option><option>Juárez</option><option>Polanco</option><option>Lomas de Chapultepec</option><option>Lomas de Virreyes</option><option>Santa Fe</option></select></div>
         <p class="grupo">Envío</p>
         <div class="opciones">
-          <label><input type="radio" name="entrega" value="Envío por Uber"><span>Envío por Uber<small>El envío corre por tu cuenta: tú solicitas el Uber y lo recogen en nuestra casa-taller. Te compartimos la dirección al confirmar.</small></span></label>
+          <label><input type="radio" name="entrega" value="Envío por Uber"><span>Envío por Uber<small>El envío corre por tu cuenta: tú solicitas el Uber y sale de nuestra casa-taller en Calimaya, Edo. Méx. Te compartimos la dirección exacta al confirmar. Si estás en otro estado, elige paquetería.</small></span></label>
           <label><input type="radio" name="entrega" value="Envío por paquetería"><span>Envío por paquetería a otra ciudad<small>Cotizamos la paquetería por ti.</small></span></label>
         </div>
-        <p class="ayuda">En puntos de entrega, te compartimos el lugar y la hora al confirmar.</p>
       </div>
       <fieldset class="direccion" id="campo-dir" hidden>
         <legend>Dirección de envío</legend>
@@ -367,8 +368,8 @@ function pintarPanel(){
         <div class="campo"><label for="referencias">Referencias (opcional)</label><input id="referencias" name="referencias" placeholder="Entre calles, color de la casa…"></div>
       </fieldset>
 
-      <div class="campo"><label for="fecha">¿Para cuándo lo necesitas?</label><input id="fecha" name="fecha" type="date" min="${manana()}">
-        <small class="ayuda">Pedidos chicos: mínimo 24 horas. Pedidos grandes necesitan unos días más y te confirmamos la fecha. Somos un equipo pequeño y todo se hace a mano.</small></div>
+      <div class="campo"><label for="fecha">¿Para cuándo lo necesitas?</label><input id="fecha" name="fecha" type="date" min="${minFecha()}">
+        <small class="ayuda">Es tu fecha ideal y nos ayuda a planear; pide con al menos 48 horas. Revisamos tu pedido en menos de 24 horas y empezamos a hacerlo al recibir el anticipo. Con la cotización final te confirmamos la fecha de entrega. Somos un equipo pequeño y todo se hace a mano.</small></div>
       <div class="campo"><label for="notas">Notas (opcional)</label><textarea id="notas" name="notas" placeholder="¿Alguna pregunta o algo que debamos saber?"></textarea></div>
 
       <div class="pago">
@@ -399,7 +400,7 @@ function actualizarCampos(){
   $("#campo-empresa").hidden = f.tipo.value === "Personal o regalo";
   const ent = f.entrega.value;
   $("#campo-cdmx").hidden = ent !== "Punto de entrega en CDMX";
-  $("#campo-dir").hidden = ent !== "Envío por paquetería";
+  $("#campo-dir").hidden = !ent.startsWith("Envío por");
 }
 $("#panel-body").addEventListener("change", e => { if (e.target.name === "tipo" || e.target.name === "entrega") actualizarCampos(); });
 function refrescarItems(){
@@ -431,17 +432,17 @@ $("#panel-body").addEventListener("submit", async e => {
   if (!c.email && fallo("Escribe tu correo: ahí te llega la copia de tu pedido.", f.email)) return;
   const ent = f.entrega.value;
   if (ent === "Punto de entrega en CDMX" && !f.coloniaCdmx.value && fallo("Elige la colonia de CDMX donde quieres recibirlo.", f.coloniaCdmx)) return;
-  if (ent === "Envío por paquetería") {
+  if (ent.startsWith("Envío por")) {
     for (const [campo, msg] of [["calle","Escribe la calle y el número."],["cp","Escribe el código postal (5 dígitos)."],["colonia","Escribe la colonia."],["ciudad","Escribe la ciudad o municipio."],["estado","Escribe el estado."]]) {
       const v = f[campo].value.trim();
       if ((!v || (campo === "cp" && !/^\d{5}$/.test(v))) && fallo(msg, f[campo])) return;
     }
   }
-  if (f.fecha.value && f.fecha.value < manana() && fallo("Elige una fecha a partir de mañana: necesitamos al menos 24 horas.", f.fecha)) return;
+  if (f.fecha.value && f.fecha.value < minFecha() && fallo("Elige una fecha a partir de pasado mañana: necesitamos al menos 48 horas.", f.fecha)) return;
   const perso = [...f.querySelectorAll('input[name="perso"]:checked')].map(x => x.value);
   const personalizacion = [perso.join(", "), f.idea.value.trim()].filter(Boolean).join(" · Idea: ");
   const entrega = ent === "Punto de entrega en CDMX" ? ent + " · " + f.coloniaCdmx.value : ent;
-  const direccion = ent === "Envío por paquetería"
+  const direccion = ent.startsWith("Envío por")
     ? [f.calle.value.trim() + (f.interior.value.trim() ? " int. " + f.interior.value.trim() : ""), "Col. " + f.colonia.value.trim(), "C.P. " + f.cp.value.trim(), f.ciudad.value.trim() + ", " + f.estado.value.trim(), f.referencias.value.trim() ? "Ref.: " + f.referencias.value.trim() : ""].filter(Boolean).join(", ")
     : "";
 
